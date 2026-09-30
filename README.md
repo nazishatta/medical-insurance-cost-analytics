@@ -1,67 +1,102 @@
 # Medical Insurance Cost Explorer
 
-An interactive, dark-themed healthcare analytics dashboard for exploring numerical medical charges across age, body mass index, smoking status and U.S. regions.
+An interactive healthcare analytics dashboard for exploring patterns in medical charges across age, body mass index, smoking status, and U.S. regions.
 
-**Stack:** Python · Pandas · Plotly · Streamlit
+**Tech Stack:** Python · Pandas · Plotly · Streamlit
 
-## What it does
+## Live Application
 
-- Filter records by age, BMI, smoking status and region.
-- Compare age-versus-charges and BMI-versus-charges scatter plots using consistent encodings.
-- Compare mean or median charges by region, calculated on the currently filtered records.
-- Inspect metrics and original source fields; export **only the filtered records** to CSV.
-- Reuse the validated dataset via `st.cache_data`, keeping widget interactions responsive.
+[![Open Live Dashboard](https://img.shields.io/badge/Open%20Live%20Dashboard-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://medical-insurance-cost-analytics-09.streamlit.app/)
 
-## Data
+**Live Dashboard:** [medical-insurance-cost-analytics-09.streamlit.app](https://medical-insurance-cost-analytics-09.streamlit.app/)
 
-The bundled file is `data/insurance.csv`, supplied with the project. It contains 1,338 rows and seven fields: `age`, `sex`, `bmi`, `children`, `smoker`, `region` and `charges`. The provided file has no missing values and one exact duplicate row; the application retains it rather than silently changing the source sample.
+Explore the deployed analytics dashboard directly in your browser. Use the interactive controls to filter the population by age, BMI, smoking status, and region; compare medical-charge patterns across multiple visualizations; inspect the underlying records; and export the filtered dataset for further analysis.
 
-**Interpretation boundary:** The CSV itself does not specify the source's data-collection period, insurance carrier, currency or detailed billing methodology. The dashboard therefore labels charges as *dataset units*, avoids claims about premiums or prices today, and presents associations rather than causal claims.
+## Project Overview
 
-## Run locally
+The Medical Insurance Cost Explorer is a dark-themed interactive analytics application designed to make insurance-cost data easier to explore and interpret.
 
-Python 3.10+ recommended.
+The application focuses on relationships between medical charges and several demographic or lifestyle-related variables contained in the dataset, including:
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate  # macOS / Linux
-python3 -m pip install -r requirements.txt
-python3 -m streamlit run app.py
-```
+- Age
+- Body mass index
+- Smoking status
+- Number of children
+- U.S. region
+- Recorded sex category
+- Medical charges
 
-For Windows PowerShell, activate with `.venv\Scripts\Activate.ps1`.
+Rather than presenting a static notebook or fixed chart, the dashboard allows users to interactively refine the dataset and immediately observe how metrics, charts, summaries, and exported records change.
 
-## Run tests
+## Key Features
 
-```bash
-python3 -m pip install pytest
-python3 -m pytest -q
-```
+- Filter records by age range.
+- Filter records by BMI range.
+- Filter by smoking status.
+- Filter by U.S. region.
+- Compare mean and median medical charges.
+- View dynamic KPI metrics based on the filtered population.
+- Explore age-versus-charges relationships.
+- Explore BMI-versus-charges relationships.
+- Compare regional medical-charge summaries.
+- Inspect the filtered source records directly.
+- Export only the currently filtered data to CSV.
+- Use responsive sidebar controls that update every analytical view.
+- Reuse validated source data through Streamlit caching for responsive interaction.
+- View a built-in About section with data-quality notes and a data dictionary.
+- Use a consistent dark visual theme across the dashboard and charts.
 
-## Deploy to Streamlit Community Cloud
+## Interactive Dashboard Design
 
-1. Push the complete project, including `data/insurance.csv`, to your GitHub repository.
-2. Visit https://share.streamlit.io and create an app from that repository's `main` branch.
-3. Set the main file path to `app.py`. Streamlit detects `requirements.txt` and `.streamlit/config.toml`.
-4. Open the deployed app and verify that filters, charts and CSV export work.
+The application uses a charcoal-gray visual system with restrained accent colors to create a professional analytics interface.
 
-## Project layout
+### Theme
+
+- **Primary background:** `#111318`
+- **Secondary background:** `#1b2028`
+- **Primary accent:** `#6cdec9`
+- **Secondary accent:** `#f5b76b`
+- **Primary text:** `#e9eff4`
+- **Muted text:** `#abb6c4`
+
+The visual design is intended to maintain strong contrast while keeping analytical content readable across charts, filters, metrics, and data tables.
+
+## Dashboard Structure
+
+The application is organized into three main analytical views.
+
+### Visualizations
+
+The visualization section contains:
+
+- Age vs. medical charges scatter plot
+- BMI vs. medical charges scatter plot
+- Regional mean or median charge comparison
+
+The charts respond dynamically to all sidebar filters.
+
+### Data & Export
+
+The data section displays the filtered dataset used by the current dashboard state.
+
+Users can export the filtered records using the built-in CSV download function.
+
+### About
+
+The About section provides:
+
+- Dataset description
+- Data-quality summary
+- Source record count
+- Missing-value count
+- Duplicate-row count
+- Data dictionary
+- Interpretation guidance
+- Analysis limitations
+
+## Dataset
+
+The project uses the bundled file:
 
 ```text
-medical-insurance-cost-analytics/
-├── app.py
-├── analytics.py
-├── requirements.txt
-├── README.md
-├── .gitignore
-├── .streamlit/
-│   └── config.toml
-├── data/
-│   └── insurance.csv
-└── tests/
-    └── test_analytics.py
-```
-
-## Development transparency
-
-AI assistance was used for application scaffolding, visual-design suggestions, and documentation drafting. The repository owner should review, test, adapt and take responsibility for the analysis and final implementation.
+data/insurance.csv
